@@ -3,7 +3,6 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 	private int ponteiroTopo1;
 	private int ponteiroTopo2;
 	private Object[] dados;
-	private int tamanho;
 	
 	public PilhaEstaticaDupla() {
 		this(10);
@@ -12,7 +11,6 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 	public PilhaEstaticaDupla(int tamanho) {
 		ponteiroTopo1 = -1;
 		ponteiroTopo2 = tamanho;
-		this.tamanho = tamanho;
 		dados = new Object[tamanho];
 	}
 	
@@ -21,7 +19,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 			ponteiroTopo1++;
 			dados[ponteiroTopo1] = elemento;
 		} else {
-			System.out.println("Pilha Cheia");
+			System.out.println("Pilha1 Cheia");
 		}
 	}
 	
@@ -31,7 +29,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 			elementoTopo = dados[ponteiroTopo1]; 
 			ponteiroTopo1--;
 		} else {
-			System.out.println("Pilha Vazia");
+			System.out.println("Pilha1 Vazia");
 		}
 		return elementoTopo;
 	}
@@ -41,7 +39,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 		if(!estaVazia1()) {
 			elementoTopo = dados[ponteiroTopo1]; 
 		} else {
-			System.out.println("Pilha Vazia");
+			System.out.println("Pilha1 Vazia");
 		}
 		return elementoTopo;	
 	}
@@ -56,8 +54,13 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 	
 	public String imprimir1(){
 		String resultado = "[";
-		for(int i = 0; i<=ponteiroTopo1;i++) {
-			resultado += dados[i]+ " ";
+		for(int i = ponteiroTopo1; i >= 0; i--) {
+			if (i == 0) {
+				resultado += dados[i];
+			}
+			else {
+				resultado += dados[i]+ " ";
+			}
 		}
 		return resultado+"]";
 	}
@@ -67,7 +70,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 			ponteiroTopo2--;
 			dados[ponteiroTopo2] = elemento;
 		} else {
-			System.out.println("Pilha Cheia");
+			System.out.println("Pilha2 Cheia");
 		}
 	}
 	
@@ -77,7 +80,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 			elementoTopo = dados[ponteiroTopo2]; 
 			ponteiroTopo2++;
 		} else {
-			System.out.println("Pilha Vazia");
+			System.out.println("Pilha2 Vazia");
 		}
 		return elementoTopo;
 	}
@@ -87,7 +90,7 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 		if(!estaVazia2()) {
 			elementoTopo = dados[ponteiroTopo2]; 
 		} else {
-			System.out.println("Pilha Vazia");
+			System.out.println("Pilha2 Vazia");
 		}
 		return elementoTopo;	
 	}
@@ -97,13 +100,18 @@ public class PilhaEstaticaDupla implements EmpilhavelDupla {
 	}
 	
 	public boolean estaVazia2(){
-		return (ponteiroTopo2 == tamanho);
+		return (ponteiroTopo2 == dados.length);
 	}
 	
 	public String imprimir2(){
 		String resultado = "[";
-		for(int i = tamanho-1; i>=ponteiroTopo2;i--) {
-			resultado += dados[i]+ " ";
+		for(int i = ponteiroTopo2; i <= dados.length-1; i++) {
+			if (i == dados.length-1) {
+				resultado += dados[i];
+			}
+			else {
+				resultado += dados[i]+ " ";
+			}
 		}
 		return resultado+"]";
 	}

@@ -2,7 +2,6 @@ public class PilhaEstaticaInvertida implements Empilhavel {
 	
 	private int ponteiroTopo;
 	private Object[] dados;
-	private int tamanho;
 	
 	public PilhaEstaticaInvertida() {
 		this(10);
@@ -10,7 +9,6 @@ public class PilhaEstaticaInvertida implements Empilhavel {
 
 	public PilhaEstaticaInvertida(int tamanho) {
 		ponteiroTopo = tamanho;
-		this.tamanho = tamanho;
 		dados = new Object[tamanho];
 	}
 	
@@ -49,13 +47,18 @@ public class PilhaEstaticaInvertida implements Empilhavel {
 	}
 	
 	public boolean estaVazia(){
-		return (ponteiroTopo == tamanho);
+		return (ponteiroTopo == dados.length);
 	}
 	
 	public String imprimir(){
 		String resultado = "[";
-		for(int i = tamanho-1; i>=ponteiroTopo;i--) {
-			resultado += dados[i]+ " ";
+		for(int i = ponteiroTopo; i <= dados.length-1; i++) {
+			if (i == dados.length-1) {
+				resultado += dados[i];
+			}
+			else {
+				resultado += dados[i]+ " ";
+			}
 		}
 		return resultado+"]";
 	}
